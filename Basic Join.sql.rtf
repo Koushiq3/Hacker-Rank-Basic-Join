@@ -106,6 +106,13 @@ Write a query to help Eve.
 
 Solution:
 
+SELECT 
+CASE WHEN grd.grade < 8 then null
+WHEN grd.grade >= 8 then std.name END,
+grd.grade, std.marks from students std, grades grd
+WHERE std.marks BETWEEN grd.min_mark AND grd.max_mark
+ORDER BY grd.grade DESC, std.name ASC;
+
 
 
 
