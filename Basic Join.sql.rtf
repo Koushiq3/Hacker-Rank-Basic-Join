@@ -1,31 +1,50 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2709
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
-{\colortbl;\red255\green255\blue255;\red15\green16\blue19;\red255\green255\blue255;}
-{\*\expandedcolortbl;;\cssrgb\c7059\c7843\c9412;\cssrgb\c100000\c100000\c100000;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
+1. Population Census
 
-\f0\fs28 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 Given the\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 CITY
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \'a0and\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 COUNTRY
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \'a0tables, query the sum of the populations of all cities where the\'a0CONTINENT\'a0is\'a0'Asia'.\cb1 \
-\pard\pardeftab720\partightenfactor0
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 Note:
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \'a0CITY.CountryCode\'a0and\'a0COUNTRY.Code\'a0are matching key columns.\cb1 \
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
 
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cb3 Input Format
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cb1 \
-\pard\pardeftab720\partightenfactor0
-\cf2 \cb3 The\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 CITY
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \'a0and\'a0
-\f1\b \AppleTypeServices\AppleTypeServicesF65539 COUNTRY
-\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \'a0tables are described as follows:\
-\
-\
-\cb1 \
-}
+Input Format
+
+The CITY and COUNTRY tables are described as follows:
+City
+
++-------------+----------+
+| Field       | Type     |
++-------------+----------+
+| ID          | int(11)  |
+| Name        | char(35) |
+| CountryCode | char(3)  |
+| District    | char(20) |
+| Population  | int(11)  |
++-------------+----------+
+
+Country
+
++----------------+-------------+
+| Field          | Type        |
++----------------+-------------+
+| Code           | char(3)     |
+| Name           | char(52)    |
+| Continent      | char(50)    |
+| Region         | char(26)    |
+| SurfaceArea    | float(10,2) |
+| IndepYear      | smallint(6) |
+| Population     | int(11)     |
+| LifeExpectancy | float(3,1)  |
+| GNP            | float(10,2) |
+| GNPOld         | float(10,2) |
+| LocalName      | char(45)    |
+| GovernmentForm | char(45)    |
+| HeadOfState    | char(60)    |
+| Capital        | int(11)     |
+| Code2          | char(2)     |
++----------------+-------------+
+
+SOLUTION: 
+
+SELECT SUM(CITY.POPULATION)
+FROM CITY
+JOIN COUNTRY
+ON CITY.COUNTRYCODE = COUNTRY.CODE
+WHERE COUNTRY.CONTINENT = 'ASIA';
